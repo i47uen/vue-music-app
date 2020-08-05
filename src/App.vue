@@ -80,21 +80,6 @@ export default {
         artist: "ccwa",
         src: require('@/assets/songs/ccwa - Клеймо жертвы на рукаве.mp3'),
       },
-      {
-        title: "California",
-        artist: "NCS",
-        src: require('@/assets/songs/NCS_Release-California.mp3'),
-      },
-      {
-        title: "Lost Sky",
-        artist: "NCS",
-        src: require('@/assets/songs/NCS_Release-LostSky.mp3'),
-      },
-      {
-        title: "To Myself",
-        artist: "NCS",
-        src: require('@/assets/songs/NCS_Release-ToMyself.mp3'),
-      },
     ],
     player: new Audio()
   }),
