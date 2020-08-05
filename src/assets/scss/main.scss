@@ -1,0 +1,53 @@
+@import "variables";
+@import "grid";
+@import "keyframes";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500;700;900&display=swap');
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+html, body{
+  min-height: 100vh;
+  position: relative;
+}
+
+body {
+  font-family: Roboto, Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: $dark;
+  overflow: hidden;
+  @media (max-width: 768px) {
+    overflow: auto;
+  }
+}
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.row{
+  max-width: 100%;
+}
+
+.container{
+  margin: 0 auto;
+}
+
+button{
+  border: 0;
+  outline: 0;
+  background: $dark;
+  color: $white;
+  padding: 9px 28px;
+  margin: 0 10px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 0 10px rgba($dark, 0.2);
+  &:hover{
+    filter: brightness(1.8);
+  }
+  &:active{
+    animation: scale-click 0.15s ease-in-out;
+  }
+}
