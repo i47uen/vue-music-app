@@ -1,8 +1,8 @@
 <template>
   <header>
     <h1>
-      <img src="../assets/images/logo.png" alt="Vue">
-      My Music App</h1>
+
+      My <img src="../assets/images/logo.png" alt="Vue"> Music App</h1>
   </header>
 </template>
 
@@ -25,7 +25,7 @@ h1{
   font-weight: 400;
 }
 img{
-  margin-right: 15px;
+  margin: 0 12px;
   width: 40px;
 }
 </style>

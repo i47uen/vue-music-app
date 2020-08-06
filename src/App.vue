@@ -25,16 +25,14 @@
             <i class="fa fa-step-forward" aria-hidden="true"></i>
           </button>
 
-          <button class="repeat" @click="player.loop = !player.loop" :class="player.loop ? 'active' : ''">
+          <button class="repeat" @click="toggleLoop" :class="isLooped ? 'active' : ''">
             <i class="fa fa-retweet" aria-hidden="true"></i>
           </button>
 
         </div>
 
         <div class="volume">
-          <i v-if="player.volume >= 0.5" class="fa fa-volume-up" aria-hidden="true" />
-          <i v-else-if="player.volume <= 0.5" class="fa fa-volume-down" aria-hidden="true" />
-          <i v-else-if="player.volume === 0" class="fa fa-volume-off" aria-hidden="true" />
+          <i class="fa fa-volume-up" aria-hidden="true" />
           <input class="player-volume" @change="player.volume" v-model="player.volume" :min="0" :max="1" :step="0.05" type="range" width="30">
         </div>
 
@@ -59,6 +57,7 @@ export default {
     current: {},
     index: 3,
     isPlaying: false,
+    isLooped: false,
     songs: [
       {
         title: "Calm",
@@ -93,7 +92,9 @@ export default {
       this.player.play();
       this.isPlaying = true;
       this.player.addEventListener('ended', function () {
-        this.index++
+        if(!this.isLooped){
+          this.index++
+        }
         if (this.index > this.songs.length -1){
           this.index = 0;
         }
@@ -129,6 +130,11 @@ export default {
       }
       this.current = this.songs[this.index];
       this.play(this.current);
+    },
+
+    toggleLoop(){
+      this.player.loop = !this.player.loop
+      this.isLooped = !this.isLooped
     },
 
     convertTime (time) {
@@ -235,7 +241,7 @@ export default {
   .play{
     margin: 0;
     i{
-      margin-bottom: 7.5px;
+      margin-bottom: 5px;
       margin-left: 9px;
     }
   }
@@ -255,7 +261,7 @@ export default {
     margin: 0;
     font-size: 20px;
     padding: 9px 15px;
-    padding-top: 15px;
+    padding-top: 12px;
   }
 }
 .playlist{
@@ -277,8 +283,9 @@ export default {
   }
 
   .song{
-    width: 70%;
-    margin-top: 10px;
+    width: 75%;
+    margin-top: 12px;
+    padding: 12px 0;
     transition: all 0.2s ease-in;
     @media (max-width: 768px) {
       width: 90%;
