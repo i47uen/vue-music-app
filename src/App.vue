@@ -4,45 +4,48 @@
     <main class="row">
 
       <section class="player col-lg-6">
-        <div class="song-cover"></div>
-        <h2 class="song-title"><span>{{ current.artist }}</span> - {{ current.title }}</h2>
+        <div class="song-cover" :style="`backgroundImage: url(${current.cover})`">
+        </div>
+        <h2 class="song-title">
+          <span>{{ current.artist }}</span> - {{ current.title }}
+        </h2>
         <div class="controls">
-
-          <a class="download" :href="current.src" download="" @click="player.loop = !player.loop">
-            <i class="fa fa-download" aria-hidden="true"></i>
+          <a class="control download" :href="current.src" download="" @click="player.loop = !player.loop">
+            <img :src="require('@/assets/images/icons/download.svg')" alt="download">
           </a>
-
-          <button class="prev" @click="prev">
-            <i class="fa fa-step-backward" aria-hidden="true"></i>
-          </button>
-          <button class="play" v-if="!isPlaying" @click="play">
-            <i class="fa fa-play" aria-hidden="true"></i>
-          </button>
-          <button class="pause" v-else @click="pause">
-            <i class="fa fa-pause" aria-hidden="true"></i>
-          </button>
-          <button class="next" @click="next">
-            <i class="fa fa-step-forward" aria-hidden="true"></i>
-          </button>
-
-          <button class="repeat" @click="toggleLoop" :class="isLooped ? 'active' : ''">
-            <i class="fa fa-retweet" aria-hidden="true"></i>
-          </button>
-
+          <div class="control prev" @click="prev">
+            <img :src="require('@/assets/images/icons/prev.svg')" alt="<--">
+          </div>
+          <div class="control play" v-if="!isPlaying" @click="play">
+            <img :src="require('@/assets/images/icons/play.svg')" alt="!>">
+          </div>
+          <div class="control pause" v-else @click="pause">
+            <img :src="require('@/assets/images/icons/pause.svg')" alt="||">
+          </div>
+          <div class="control next" @click="next">
+            <img :src="require('@/assets/images/icons/next.svg')" alt="-->">
+          </div>
+          <div class="control repeat" @click="toggleLoop" :class="isLooped ? 'active' : ''">
+            <img :src="require('@/assets/images/icons/repeat.svg')" alt="r">
+          </div>
         </div>
 
         <div class="volume">
-          <i class="fa fa-volume-up" aria-hidden="true" />
-          <input class="player-volume" @change="player.volume" v-model="player.volume" :min="0" :max="1" :step="0.05" type="range" width="30">
+          <img :src="require('@/assets/images/icons/volume.svg')" alt="volume">
+          <input class="player-volume range" @change="player.volume" v-model="player.volume" :min="0" :max="1" :step="0.05" type="range" width="40">
         </div>
-
       </section>
 
       <section class="playlist col-lg-6">
-        <h2>Плэйлист</h2>
-        <button v-for="song in songs" :key="song.src" @click="play(song)" :class="(song.src === current.src) ? 'song playing' : 'song'">
-          {{ song.artist }} - {{ song.title }}
-        </button>
+        <h2 class="playlist-title">Плэйлист</h2>
+        <div v-for="song in songs" :key="song.src" @click="play(song)" :class="(song.src === current.src) ? 'song playing' : 'song'">
+          <div class="everlib-logo">
+            <i class="everlib-logo-first-bar"></i>
+            <i class="everlib-logo-second-bar"></i>
+            <i class="everlib-logo-third-bar"></i>
+          </div>
+          <span>{{ song.artist }}</span> - {{ song.title }}
+        </div>
       </section>
 
     </main>
@@ -55,29 +58,15 @@ export default {
   name: 'App',
   data: () => ({
     current: {},
-    index: 3,
+    index: 0,
     isPlaying: false,
     isLooped: false,
     songs: [
       {
-        title: "Calm",
-        artist: "DEPVRTXT",
-        src: require('@/assets/songs/DEPVRTXT - Calm.mp3'),
-      },
-      {
-        title: "OMAEVA",
-        artist: "DEPVRTXT",
-        src: require('@/assets/songs/DEPVRTXT - OMAEVA.mp3'),
-      },
-      {
-        title: "No Title",
-        artist: "DEPVRTXT",
-        src: require('@/assets/songs/DEPVRTXT  - .mp3'),
-      },
-      {
-        title: "Клеймо жертвы на рукаве",
-        artist: "ccwa",
-        src: require('@/assets/songs/ccwa - Клеймо жертвы на рукаве.mp3'),
+        title: "Happiness Does Not Wait (Jean Blanc Edit)",
+        artist: "Ólafur Arnalds",
+        src: require('@/assets/songs/Ólafur Arnalds - Happiness Does Not Wait (Jean Blanc Edit).mp3'),
+        cover: "https://i1.sndcdn.com/artworks-000239661105-hbvulk-t500x500.jpg"
       },
     ],
     player: new Audio()
@@ -165,24 +154,58 @@ export default {
 
 <style lang="scss">
 @import "assets/scss/main";
-.player{
+  .player{
+    color: $white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+    min-height: 75vh;
+    margin-top: 11vh;
 
-  min-height: 75vh;
-  margin-top: 6vh;
-
-  .repeat{
-    margin: 0 -15px;
-    background: none;
-    box-shadow: none;
-    font-size: 22px;
-    color: #787787;
-    &.active{
-      color: $dark;
+    .controls{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .control{
+      padding: 14px;
+      cursor: pointer;
+        img{
+          height: 30px;
+          width: auto;
+        }
+        filter: invert(1);
+        &.download, &.repeat{
+          img{
+            height: 22px;
+          }
+        }
+        &.prev, &.next{
+          img{
+            height: 38px;
+          }
+        }
+        &.play{
+          display: block;
+          background: $white;
+          border-radius: 80px;
+          img{
+            margin: 18px;
+            height: 50px;
+            transform: translateX(5px);
+          }
+        }
+        &.pause{
+          display: block;
+          background: $white;
+          border-radius: 80px;
+          img{
+            margin: 18px;
+            height: 50px;
+          }
+        }
+      }
     }
   }
 
@@ -191,27 +214,30 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    i{
+    img{
       margin-right: 7px;
-      font-size: 24px;
+      height: 26px;
+      filter: invert(1);
     }
   }
+
   .song-cover{
-    //background: #232323;
-    background: url("https://cdnb.artstation.com/p/assets/images/images/011/745/827/large/valeria-pulido-guts.jpg?1531196168");
     background-size: cover;
     background-position: bottom;
     background-repeat: no-repeat;
     width: 220px;
     height: 220px;
     border-radius: 15px;
-    margin-bottom: 20px;
-    box-shadow: 0 0 25px rgba($dark, 0.35);
+    margin-bottom: 30px;
+    border: 1px solid #fff;
+    box-shadow: 0 4px 25px rgba($white, 0.1);
   }
+
   .song-title{
+    max-width: 460px;
     font-weight: 300;
     font-style: italic;
-    color: #343434;
+    color: $white;
     margin-bottom: 15px;
     span{
       text-decoration: underline;
@@ -219,87 +245,46 @@ export default {
       font-weight: 700;
     }
   }
-  padding-top: 50px;
-  .controls{
+
+  .playlist{
+    max-height: 75vh;
+    overflow: auto;
+
+    padding-top: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  .play, .pause{
-    border-radius: 200px;
-    font-size: 45px;
-    width: 100px;
-    height: 100px;
-  }
-  .pause{
-    margin: 0;
-    i{
-      margin-bottom: 9px;
-      margin-left: 2px;
-    }
-  }
-  .play{
-    margin: 0;
-    i{
-      margin-bottom: 5px;
-      margin-left: 9px;
-    }
-  }
-  .prev, .next{
-    background: none;
-    box-shadow: none;
-    color: $dark;
-    font-size: 40px;
-    margin: 0;
-  }
-  .prev{
+    flex-direction: column;
 
-  }
-  .download{
-    display: block;
-    color: $dark;
-    margin: 0;
-    font-size: 20px;
-    padding: 9px 15px;
-    padding-top: 12px;
-  }
-}
-.playlist{
-  max-height: 75vh;
-  overflow: auto;
-
-  padding-top: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
-  @media (max-width: 768px) {
-    max-height: 100%;
-    width: 100%;
-    margin-bottom: 50px;
-    padding-top: 0;
-    padding-left: 35px;
-  }
-
-  .song{
-    width: 75%;
-    margin-top: 12px;
-    padding: 12px 0;
-    transition: all 0.2s ease-in;
     @media (max-width: 768px) {
-      width: 90%;
-      margin-left: auto;
-      margin-right: auto;
-      padding: 20px 0;
-      margin-bottom: 10px;
+      max-height: 100%;
+      width: 100%;
+      margin-bottom: 50px;
+      padding-top: 0;
+      padding-left: 35px;
     }
-    &.playing{
-      background: none;
-      outline: 2px solid $dark;
-      transform: scale(1.05);
-      color: $dark;
+
+    .song{
+      width: 80%;
+      margin-top: 12px;
+      padding: 10px 0;
+      transition: all 0.2s ease-in;
+      @media (max-width: 768px) {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 20px 0;
+        margin-bottom: 10px;
+      }
+      span{
+        font-weight: 600;
+      }
+      &.playing{
+        background: none;
+        outline: 2px solid $white;
+        transform: scale(1.02);
+        color: $white;
+      }
     }
   }
-}
 </style>

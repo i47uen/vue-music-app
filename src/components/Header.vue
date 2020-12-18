@@ -9,13 +9,15 @@
 <style scoped lang="scss">
 @import "../assets/scss/variables";
 header{
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 15px;
+  padding: 10px;
   background-color: $dark;
   color: $white;
+  user-select: none;
 }
 h1{
   display: flex;
@@ -25,7 +27,7 @@ h1{
   font-weight: 400;
 }
 img{
-  margin: 0 12px;
+  margin: 0 8px;
   width: 40px;
 }
 </style>

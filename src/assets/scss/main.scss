@@ -2,8 +2,6 @@
 @import "grid";
 @import "keyframes";
 @import "~normalize.css";
-@import url('https://fo1nts.googleapis.com/css2?family=Roboto:wght@500;700;900&display=swap');
-@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 
 html, body{
   min-height: 100vh;
@@ -11,11 +9,12 @@ html, body{
 }
 
 body {
-  font-family: Roboto, Avenir, Helvetica, Arial, sans-serif;
+  font-family: sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: $dark;
+  color: $white;
+  background: $dark;
   overflow: hidden;
   @media (max-width: 768px) {
     overflow: auto;
@@ -40,16 +39,20 @@ main{
   margin: 0 auto;
 }
 
+input:focus{
+  outline: none;
+}
+
 button{
   border: 0;
   outline: 0;
-  background: $dark;
-  color: $white;
+  background: $white;
+  color: $dark;
   padding: 9px 28px;
   margin: 0 10px;
   cursor: pointer;
   font-weight: 600;
-  box-shadow: 0 0 10px rgba($dark, 0.2);
+  box-shadow: 0 0 10px rgba($white, 0.2);
   &:hover{
     filter: brightness(1.8);
   }
@@ -57,3 +60,162 @@ button{
     animation: scale-click 0.15s ease-in-out;
   }
 }
+
+
+.range {
+  appearance:none;
+  width: 10rem;
+  height: .25rem;
+  outline: none;
+  border-radius: .25rem;
+
+  &::-webkit-slider-thumb {
+    appearance: none;
+    width: 1.1rem;
+    height: 1.1rem;
+    background-color: $white;
+    border: .1rem solid $white;
+    border-radius: 1rem;
+    cursor: pointer;
+  }
+
+  &::-moz-range-thumb {
+    appearance: none;
+    width: 1rem;
+    height: 1rem;
+    background-color: $white;
+    border: 0.1rem solid $white;
+    border-radius: 1rem;
+    cursor: pointer;
+  }
+
+}
+
+.everlib-logo {
+  display: inline-block;
+  cursor: pointer;
+  background: transparent;
+  
+  .everlib-logo-first-bar,
+  .everlib-logo-second-bar,
+  .everlib-logo-third-bar,
+  .everlib-logo-fourth-bar {
+    display: inline-block;
+    border-radius: 13px;
+    width: 9px;
+    margin-right: 6px;
+    transition: .5s;
+    animation: equalize 4s 0s infinite;
+    animation-timing-function: linear;
+    vertical-align: top;
+  }
+  
+  .everlib-logo-first-bar {
+    height: 40px;
+    background: #0f87ae;
+    transition: 0.5s;
+    animation-delay: -1.9s;
+  }
+  
+  .everlib-logo-second-bar {
+    height: 48px;
+    background: #b75690;
+    animation-delay: -2.9s;
+  }
+  
+  .everlib-logo-third-bar {
+    height: 44px;
+    background: #86c035;
+    animation-delay: -3.9s;
+  }
+  
+  .everlib-logo-fourth-bar {
+    height: 36px;
+    background: #F0902E;
+    animation-delay: -4.9s;
+  }
+}
+
+@keyframes equalize {
+  0% {
+    height: 48px;
+  }
+  4% {
+    height: 42px;
+  }
+  8% {
+    height: 40px;
+  }
+  12% {
+    height: 30px;
+  }
+  16% {
+    height: 20px;
+  }
+  20% {
+    height: 30px;
+  }
+  24% {
+    height: 40px;
+  }
+  28% {
+    height: 10px;
+  }
+  32% {
+    height: 40px;
+  }
+  36% {
+    height: 48px;
+  }
+  40% {
+    height: 20px;
+  }
+  44% {
+    height: 40px;
+  }
+  48% {
+    height: 48px;
+  }
+  52% {
+    height: 30px;
+  }
+  56% {
+    height: 10px;
+  }
+  60% {
+    height: 30px;
+  }
+  64% {
+    height: 48px;
+  }
+  68% {
+    height: 30px;
+  }
+  72% {
+    height: 48px;
+  }
+  76% {
+    height: 20px;
+  }
+  80% {
+    height: 48px;
+  }
+  84% {
+    height: 38px;
+  }
+  88% {
+    height: 48px;
+  }
+  92% {
+    height: 20px;
+  }
+  96% {
+    height: 48px;
+  }
+  100% {
+    height: 48px;
+  }
+}
+  
+  
+  
