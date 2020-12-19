@@ -91,129 +91,132 @@ button{
 
 }
 
-.everlib-logo {
+.eq {
   display: inline-block;
-  cursor: pointer;
   background: transparent;
+
+  position: absolute;
+  right: 2%;
+  top: 50%;
+  transform: translateY(-50%);
   
-  .everlib-logo-first-bar,
-  .everlib-logo-second-bar,
-  .everlib-logo-third-bar,
-  .everlib-logo-fourth-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .eq-first,
+  .eq-second,
+  .eq-third {
     display: inline-block;
-    border-radius: 13px;
-    width: 9px;
-    margin-right: 6px;
-    transition: .5s;
+    border-radius: 30px;
+    width: 6px;
+    transform: scale(0.6);
+    margin-right: 4px;
+    transition: 0.5s;
     animation: equalize 4s 0s infinite;
     animation-timing-function: linear;
     vertical-align: top;
+    background: $white;
   }
   
-  .everlib-logo-first-bar {
-    height: 40px;
-    background: #0f87ae;
+  .eq-first {
+    height: 36px;
+    // background: #0f87ae;
     transition: 0.5s;
     animation-delay: -1.9s;
   }
   
-  .everlib-logo-second-bar {
-    height: 48px;
-    background: #b75690;
+  .eq-second {
+    height: 44px;
+    // background: #b75690;
     animation-delay: -2.9s;
   }
   
-  .everlib-logo-third-bar {
-    height: 44px;
-    background: #86c035;
+  .eq-third {
+    height: 40px;
+    // background: #86c035;
     animation-delay: -3.9s;
-  }
-  
-  .everlib-logo-fourth-bar {
-    height: 36px;
-    background: #F0902E;
-    animation-delay: -4.9s;
   }
 }
 
 @keyframes equalize {
   0% {
-    height: 48px;
+    height: 44px;
   }
   4% {
-    height: 42px;
-  }
-  8% {
-    height: 40px;
-  }
-  12% {
-    height: 30px;
-  }
-  16% {
-    height: 20px;
-  }
-  20% {
-    height: 30px;
-  }
-  24% {
-    height: 40px;
-  }
-  28% {
-    height: 10px;
-  }
-  32% {
-    height: 40px;
-  }
-  36% {
-    height: 48px;
-  }
-  40% {
-    height: 20px;
-  }
-  44% {
-    height: 40px;
-  }
-  48% {
-    height: 48px;
-  }
-  52% {
-    height: 30px;
-  }
-  56% {
-    height: 10px;
-  }
-  60% {
-    height: 30px;
-  }
-  64% {
-    height: 48px;
-  }
-  68% {
-    height: 30px;
-  }
-  72% {
-    height: 48px;
-  }
-  76% {
-    height: 20px;
-  }
-  80% {
-    height: 48px;
-  }
-  84% {
     height: 38px;
   }
+  8% {
+    height: 36px;
+  }
+  12% {
+    height: 26px;
+  }
+  16% {
+    height: 16px;
+  }
+  20% {
+    height: 26px;
+  }
+  24% {
+    height: 36px;
+  }
+  28% {
+    height: 6px;
+  }
+  32% {
+    height: 36px;
+  }
+  36% {
+    height: 44px;
+  }
+  40% {
+    height: 16px;
+  }
+  44% {
+    height: 36px;
+  }
+  48% {
+    height: 44px;
+  }
+  52% {
+    height: 26px;
+  }
+  56% {
+    height: 8px;
+  }
+  60% {
+    height: 28px;
+  }
+  64% {
+    height: 44px;
+  }
+  68% {
+    height: 26px;
+  }
+  72% {
+    height: 44px;
+  }
+  76% {
+    height: 16px;
+  }
+  80% {
+    height: 44px;
+  }
+  84% {
+    height: 34px;
+  }
   88% {
-    height: 48px;
+    height: 44px;
   }
   92% {
-    height: 20px;
+    height: 16px;
   }
   96% {
-    height: 48px;
+    height: 44px;
   }
   100% {
-    height: 48px;
+    height: 44px;
   }
 }
   
